@@ -9,6 +9,7 @@ const reddit = new snoowrap({
   username: process.env.REDDIT_USER,
   password: process.env.REDDIT_PASSWORD
 });
+const fs = require('fs');
 
 var key = function(obj){
   return obj.id;
@@ -121,7 +122,7 @@ if (message.content.startsWith(prefix + "slap") || message.content.startsWith(pr
 		var args = message.content.split(" ").slice(1);
 		if(args[0] == null)
 		{
-			message.channel.sendMessage("*José gifle un petit peu "+message.author.username+" avec une grosse truite*\nLa prochaine fois précisez qui vous voulez que je gifle !");
+			message.channel.sendMessage("*gifle un petit peu "+message.author.username+" avec une grosse truite*\nLa prochaine fois précisez qui vous voulez que je gifle !");
 		}else{
 			var target = args[0];
 			if(target != null && target.substring(0, 1) == "<" )
@@ -132,6 +133,17 @@ if (message.content.startsWith(prefix + "slap") || message.content.startsWith(pr
 			}
 		}
 	}
+
+// !waifu shows you the true way of the waifu
+if (message.content.startsWith(prefix + "waifu")) {
+	fs.readFile("kumiko", function(err, data) {
+		if(err) throw err;
+		data += '';
+		var lines = data.split('\n');
+		message.channel.sendMessage("Voyons "+message.author.username+", on sait tous que la vraie waifu c'est Kumiko Oumae.");
+		message.channel.sendMessage(lines[Math.floor(Math.random()*lines.length)]);
+	})
+}
 
 /* ############################### */
 /* ########## CARETAKER ########## */
