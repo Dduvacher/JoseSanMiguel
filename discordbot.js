@@ -134,6 +134,22 @@ if (message.content.startsWith(prefix + "slap") || message.content.startsWith(pr
 		}
 	}
 
+// !2dcutie sends a random link from r/pantsu
+if (message.content.startsWith(prefix + "2dcutie")) {
+	message.channel.sendMessage("Ah, vous voulez quelque chose d'exotique ! Je vais voir ce que je peux faire pour vous, je reviens.");
+	if(girlplsCounter[message.author.id] != null) {
+		girlplsCounter[message.author.id]++;
+		girlplsDettes[message.author.id] += Math.floor((Math.random() * 100) + 35);
+	} else {
+		girlplsCounter[message.author.id] = 1;
+		girlplsDettes[message.author.id] = Math.floor((Math.random() * 100) + 35);
+	}
+	reddit.getRandomSubmission("pantsu").then(
+		randomSub =>{
+			message.channel.sendMessage(randomSub.url);
+		});
+} 
+
 // !waifu shows you the true way of the waifu
 if (message.content.startsWith(prefix + "waifu")) {
 	fs.readFile("kumiko", function(err, data) {
