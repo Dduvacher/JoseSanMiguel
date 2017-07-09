@@ -165,7 +165,7 @@ if (message.content.startsWith(prefix + "waifu")) {
 /* ########## CARETAKER ########## */
 /* ############################### */
 
-// send "pong" to the same channel.
+	//Check TableFlip
 	 if (message.content === '(╯°□°）╯︵ ┻━┻') {
 		flipedTablesByChannel[key(message.channel)]++;
 		if(Math.floor((Math.random() * 10) + 1) == 10)
@@ -177,7 +177,15 @@ if (message.content.startsWith(prefix + "waifu")) {
 					flipedTablesByChannel[key(message.channel)]--;
 				}
 		}
-	}	
+	}
+	
+	//Check Il est comment ... cette année ?
+	
+	var reg = new RegExp(".*(?:i|I)l est comment (.*) cette année ?");
+	if (reg.test(message.content)) {
+		var tabreg = reg.exec(message.content);
+		message.channel.sendMessage("Il est degueulasse "+tabreg[1]+" cette année.");
+	}
 });
 
 /* ############################### */
