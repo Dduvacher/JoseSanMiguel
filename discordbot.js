@@ -186,6 +186,12 @@ if (message.content.startsWith(prefix + "waifu")) {
 		var tabreg = reg.exec(message.content);
 		message.channel.sendMessage("Il est degueulasse "+tabreg[1]+" cette année.");
 	}
+	
+	var reg = new RegExp(".*(?:i|I)l sont comment (.*) cette année ?");
+	if (reg.test(message.content)) {
+		var tabreg = reg.exec(message.content);
+		message.channel.sendMessage("Il sont degueulasses "+tabreg[1]+" cette année.");
+	}
 });
 
 /* ############################### */
