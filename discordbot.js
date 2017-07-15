@@ -184,19 +184,19 @@ if (message.content.startsWith(prefix + "waifu")) {
 	var reg = new RegExp(".*(?:i|I)l est comment (.*) cette année ?");
 	if (reg.test(message.content)) {
 		var tabreg = reg.exec(message.content);
-		message.channel.sendMessage("Il est degueulasse "+tabreg[1]+" cette année.");
+		message.channel.sendMessage("Il est dégueulasse "+tabreg[1]+" cette année.");
 	}
 	
 	var reg = new RegExp(".*(?:i|I)ls sont comment (.*) cette année ?");
 	if (reg.test(message.content)) {
 		var tabreg = reg.exec(message.content);
-		message.channel.sendMessage("Il sont degueulasses "+tabreg[1]+" cette année.");
+		message.channel.sendMessage("Il sont dégueulasses "+tabreg[1]+" cette année.");
 	}
 	
 	// Check too much noise for neighbour
 	var reg = /([A-Z]| ){4,}/g;
 	if (reg.test(message.content) && message.author.username != "José Saint-Michel"){
-		var toSend = "Les voisins ont pas besoin de savoir";
+		var toSend = "Eh, les voisins ils ont pas besoin de savoir";
 		var messageReceived = message.content;
 		var tab = messageReceived.match(reg);
 		toSend+=" que "+tab[0];
@@ -205,7 +205,7 @@ if (message.content.startsWith(prefix + "waifu")) {
 				toSend+= " et que " + tab[i];
 			}
 		}
-		toSend+=".";
+		toSend+=" !";
 		message.channel.sendMessage(toSend);
 		/*while( (tab = reg.exec(messageReceived)) !== null){
 			toSend = toSend +" et que "+ (tab[0].replace(/(^\s*)|(\s*$)/g,"")); // this line delete space at the end and start of the sentence and add the correct part of the message to toSend
