@@ -215,7 +215,7 @@ if (message.content.startsWith(prefix + "waifu")) {
 	}
 	
 	// Check too much noise for neighbour
-	var reg = /([A-Z]| |'|){4,}/g;
+	var reg = /([A-Z]| |'|É){4,}/g;
 	if (reg.test(message.content) && message.author.username != "José Saint-Michel"){
 		var toSend = "Eh, les voisins ils ont pas besoin de savoir";
 		var messageReceived = message.content;
