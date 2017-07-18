@@ -18,7 +18,7 @@ var key = function(obj){
 var flipedTablesByChannel = {};
 var girlplsCounter = {};
 var girlplsDettes = {};
-
+var privateChan;
 
 const prefix ="!";
 // the ready event is vital, it means that your bot will only start reacting to information
@@ -28,6 +28,9 @@ bot.on('ready', () => {
   var channels = bot.channels.array();
   for(channel of channels)
 	{
+		if(channel.name =="chambres"){
+			privateChan=channel;
+		}
 		flipedTablesByChannel[key(channel)] = 0;
 	}
 });
@@ -42,7 +45,11 @@ bot.on('message', message => {
 
 // !girlpls ou !chicasexy give a random link from your subsribed subreddit
   if (message.content.startsWith(prefix + "girlpls") || message.content.startsWith(prefix + "chicasexy")) {
-		message.channel.sendMessage('Je vais vous sélectionner une de nos meilleures filles, je reviens.');
+		if(message.channel.name == "chambres"){
+			message.channel.sendMessage('Je vais vous sélectionner une de nos meilleures filles, je reviens.');
+		}else{
+			message.channel.sendMessage("Je vais vous sélectionner une de nos meilleures filles et je vous l'envoie dans une chambre privée, je vous invite à aller la retrouver: " + privateChan);
+		}
 	if(girlplsCounter[message.author.id] != null)
 		{
 			girlplsCounter[message.author.id]++;
@@ -61,7 +68,7 @@ bot.on('message', message => {
 				randomIndex = Math.floor((Math.random() * list.length));
 				reddit.getRandomSubmission(list[randomIndex].display_name).then(
 					randomSub =>{
-						message.channel.sendMessage(randomSub.url);
+						privateChan.sendMessage(randomSub.url);
 					});
 			});
 		}
@@ -118,18 +125,32 @@ bot.on('message', message => {
 	}
 	
 // !slap #user José will slap #user
-if (message.content.startsWith(prefix + "slap") || message.content.startsWith(prefix + "bofetada")) {
+	if (message.content.startsWith(prefix + "slap") || message.content.startsWith(prefix + "bofetada")) {
+		var found=false;
 		var args = message.content.split(" ").slice(1);
 		if(args[0] == null)
 		{
-			message.channel.sendMessage("*gifle un petit peu "+message.author.username+" avec une grosse truite*\nLa prochaine fois précisez qui vous voulez que je gifle !");
+			message.channel.sendMessage("*gifle un petit peu "+message.author+" avec une grosse truite*\nLa prochaine fois précisez qui vous voulez que je gifle !");
 		}else{
-			var target = args[0];
-			if(target != null && target.substring(0, 1) == "<" )
+			var target ="";
+			args.forEach(function(stringPieces)
+				{
+				target+=stringPieces+" ";
+
+				}
+			);
+			target = target.replace(/ $/,"");
+			if(target != null )
 			{
-			message.channel.sendMessage("*gifle un petit peu "+target+" avec une grosse truite.*");
-			}else{
-				message.channel.sendMessage("Je ne peux pas gifler cette personne voyons, elle n'est même pas ici.");
+				bot.users.forEach(function(user){
+					if(user.username == target)
+					{
+						message.channel.sendMessage("*gifle un petit peu "+user+" avec une grosse truite.*");
+						found=true;
+					}			
+				});
+				if(!found)				
+					message.channel.sendMessage("Je ne peux pas gifler cette personne voyons, elle n'est même pas ici.");
 			}
 		}
 	}
@@ -194,7 +215,7 @@ if (message.content.startsWith(prefix + "waifu")) {
 	}
 	
 	// Check too much noise for neighbour
-	var reg = /([A-Z]| ){4,}/g;
+	var reg = /([A-Z]| |'|){4,}/g;
 	if (reg.test(message.content) && message.author.username != "José Saint-Michel"){
 		var toSend = "Eh, les voisins ils ont pas besoin de savoir";
 		var messageReceived = message.content;
@@ -207,10 +228,6 @@ if (message.content.startsWith(prefix + "waifu")) {
 		}
 		toSend+=" !";
 		message.channel.sendMessage(toSend);
-		/*while( (tab = reg.exec(messageReceived)) !== null){
-			toSend = toSend +" et que "+ (tab[0].replace(/(^\s*)|(\s*$)/g,"")); // this line delete space at the end and start of the sentence and add the correct part of the message to toSend
-		}
-		message.channel.sendMessage(toSend);*/
 	}
 });
 
