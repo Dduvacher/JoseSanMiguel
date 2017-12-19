@@ -69,7 +69,7 @@ bot.on('message', message => {
 							var rndSubreddit = multi.subreddits[Math.floor(Math.random()*multi.subreddits.length)];
 							rndSubreddit.getRandomSubmission().then(
 								randomSub =>{
-									message.channel.sendMessage(randomSub.url);
+									privateChan.sendMessage(randomSub.url);
 									return randomSub;
 								}
 							);
@@ -85,7 +85,7 @@ bot.on('message', message => {
 							var rndSubreddit = multi.subreddits[Math.floor(Math.random()*multi.subreddits.length)];
 							rndSubreddit.getRandomSubmission().then(
 								randomSub =>{
-									message.channel.sendMessage(randomSub.url);
+									privateChan.sendMessage(randomSub.url);
 									return randomSub;
 								}
 							);
