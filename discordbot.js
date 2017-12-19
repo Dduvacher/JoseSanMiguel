@@ -62,15 +62,37 @@ bot.on('message', message => {
 		if(args[0] != null)
 		{
 			var whoreType = args[0];
-		}else{
-			reddit.getSubscriptions({limit: 50}).then(
-			list =>{
-				randomIndex = Math.floor((Math.random() * list.length));
-				reddit.getRandomSubmission(list[randomIndex].display_name).then(
-					randomSub =>{
-						privateChan.sendMessage(randomSub.url);
+			reddit.getMyMultireddits().then(
+				multis =>{
+					multis.forEach( function(multi) {
+						if ( multi.display_name === whoreType) {
+							var rndSubreddit = multi.subreddits[Math.floor(Math.random()*multi.subreddits.length)];
+							rndSubreddit.getRandomSubmission().then(
+								randomSub =>{
+									message.channel.sendMessage(randomSub.url);
+									return randomSub;
+								}
+							);
+						}
 					});
-			});
+				}
+			);
+		}else{
+			reddit.getMyMultireddits().then(
+				multis =>{
+					multis.forEach( function(multi) {
+						if ( multi.display_name == "girls") {
+							var rndSubreddit = multi.subreddits[Math.floor(Math.random()*multi.subreddits.length)];
+							rndSubreddit.getRandomSubmission().then(
+								randomSub =>{
+									message.channel.sendMessage(randomSub.url);
+									return randomSub;
+								}
+							);
+						}
+					});
+				}
+			);
 		}
 	}
 	
@@ -142,7 +164,7 @@ bot.on('message', message => {
 			target = target.replace(/ $/,"");
 			if(target != null )
 			{
-				bot.users.forEach(function(user){
+				bot.users.forEach( function(user) {
 					if(user.username == target)
 					{
 						message.channel.sendMessage("*gifle un petit peu "+user+" avec une grosse truite.*");
@@ -156,7 +178,7 @@ bot.on('message', message => {
 	}
 
 // !2dcutie sends a random link from r/pantsu
-if (message.content.startsWith(prefix + "2dcutie")) {
+/* if (message.content.startsWith(prefix + "2dcutie")) {
 	message.channel.sendMessage("Ah, vous voulez quelque chose d'exotique ! Je vais voir ce que je peux faire pour vous, je reviens.");
 	if(girlplsCounter[message.author.id] != null) {
 		girlplsCounter[message.author.id]++;
@@ -168,8 +190,9 @@ if (message.content.startsWith(prefix + "2dcutie")) {
 	reddit.getRandomSubmission("pantsu").then(
 		randomSub =>{
 			message.channel.sendMessage(randomSub.url);
-		});
-} 
+		}
+	);
+} */
 
 // !waifu shows you the true way of the waifu
 if (message.content.startsWith(prefix + "waifu")) {
@@ -213,9 +236,21 @@ if (message.content.startsWith(prefix + "waifu")) {
 		var tabreg = reg.exec(message.content);
 		message.channel.sendMessage("Il sont dégueulasses "+tabreg[1]+" cette année.");
 	}
+
+	var reg = new RegExp(".*(?:e|E)lle est comment (.*) cette année ?");
+	if (reg.test(message.content)) {
+		var tabreg = reg.exec(message.content);
+		message.channel.sendMessage("Il est dégueulasse "+tabreg[1]+" cette année.");
+	}
+
+	var reg = new RegExp(".*(?:e|E)lles est comment (.*) cette année ?");
+	if (reg.test(message.content)) {
+		var tabreg = reg.exec(message.content);
+		message.channel.sendMessage("Il est dégueulasse "+tabreg[1]+" cette année.");
+	}
 	
 	// Check too much noise for neighbour
-	var reg = /([A-Z]| |'|É){5,}/g;
+	var reg = /[A-Z\u00C0-\u00DC]([A-Z\u00C0-\u00DC]| ){2,}[A-Z\u00C0-\u00DC]/g;
 	if (reg.test(message.content) && message.author.username != "José Saint-Michel"){
 		var toSend = "Eh, les voisins ils ont pas besoin de savoir";
 		var messageReceived = message.content;
