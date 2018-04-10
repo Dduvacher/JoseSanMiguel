@@ -294,6 +294,6 @@ checkTable(5);
 // log our bot in
 bot.login(process.env.DISCORD_BOT_TOKEN);
 
-bot.on('disconnect', message => { 
-	bot.login(process.env.DISCORD_BOT_TOKEN);
-});
+
+
+
