@@ -219,7 +219,7 @@ bot.on('message', function (message) {
         var loucasse = bot.guilds.array()[0].members.find(function (user) {
             return user.user.username === 'Loucasse';
         });
-        message.channel.send('Je tiens à préciser que ' + loucasse + 'est un gros con, mais je lui dirai en vrai.');
+        message.channel.send('Je tiens à préciser que ' + loucasse + ' est un gros con, mais je lui dirai en vrai.');
     }
     // Merci à Ben Prunty
     if (message.content.includes('Ben Prunty') && message.author.username !== "José Saint-Michel") {
