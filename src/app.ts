@@ -3,6 +3,7 @@ import * as discord from 'discord.js';
 import * as snoowrap from 'snoowrap';
 import * as _ from 'lodash';
 import * as fs from 'fs';
+import { error } from 'util';
 
 dotenv.config();
 
@@ -57,13 +58,19 @@ bot.on('message', (message) => {
 				}
 				const randomSub = multi.subreddits[Math.floor(Math.random() * multi.subreddits.length)];
 				randomSub.getRandomSubmission().then((randomPost) => {
-					if (message.channel.id === chambresChannel.id) {
-						message.channel.send('Je vais vous sélectionner une de nos meilleures filles, je reviens.');
+					if (randomPost.url) {
+						if (message.channel.id === chambresChannel.id) {
+							message.channel.send('Je vais vous sélectionner une de nos meilleures filles, je reviens.');
+						} else {
+							message.channel.send("Je vais vous sélectionner une de nos meilleures filles et je vous l'envoie dans une chambre privée, je vous invite à aller la retrouver: " +
+							chambresChannel.name);
+						}
+						chambresChannel.send(randomPost.url).catch((err) => {
+							console.error("Une erreur est survenue lors de l'envoi de message: " + err);
+						});
 					} else {
-						message.channel.send("Je vais vous sélectionner une de nos meilleures filles et je vous l'envoie dans une chambre privée, je vous invite à aller la retrouver: " +
-						chambresChannel.name);
+						message.channel.send("Désolé aucune fille ne veut de vous actuellement.");
 					}
-					chambresChannel.send(randomPost.url);
 				}).catch((err) => {
 					console.error("Error in getting a random post from " + randomSub.name +
 					" :" + err);
