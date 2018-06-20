@@ -221,7 +221,7 @@ bot.on('message', (message) => {
 		const loucasse = bot.guilds.array()[0].members.find((user): boolean => {
 			return user.user.username === 'Loucasse';
 		});
-		message.channel.send('Je tiens à préciser que ' + loucasse + 'est un gros con, mais je lui dirai en vrai.');
+		message.channel.send('Je tiens à préciser que ' + loucasse + ' est un gros con, mais je lui dirai en vrai.');
 	}
 
 	// Merci à Ben Prunty
