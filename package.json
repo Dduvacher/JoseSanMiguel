@@ -1,16 +1,36 @@
 {
-			"name": "JoseSanMiguel",
-			"version": "0.1.0",
-			"license": "ISC",
-			"author": "Duvacher Damien <dduvacher@gmail.com>",
-			"description": "Discord Bot",
-			"dependencies": {
-						"snoowrap": "~1.13.0",
-						"discord.js": "~11.0.0",
-						"dotenv": "~4.0.0"
-			},
-			"repository": {
-						"type": "git",
-						"url": "https://github.com/Dduvacher/JoseSanMiguel"
-			}
+  "name": "jose_san_miguel",
+  "version": "0.0.1",
+  "description": "Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Dduvacher/JoseSanMiguel.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "Damien",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dduvacher/JoseSanMiguel/issues"
+  },
+  "homepage": "https://github.com/Dduvacher/JoseSanMiguel#readme",
+  "devDependencies": {
+    "@types/node": "^10.3.4",
+    "@types/dotenv": "^4.0.3",
+    "@types/snoowrap": "^1.16.0",
+    "codelyzer": "^4.3.0",
+    "discord.js": "^11.3.2",
+    "dotenv": "^6.0.0",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "snoowrap": "^1.15.2",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
+  }
 }

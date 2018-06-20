@@ -1,0 +1,143 @@
+{
+	"extends": [
+		"tslint:recommended"
+	],
+	"rules": {
+		"no-var-requires": true,
+		"no-import-side-effect": false,
+		"curly": false,
+		"forin": true,
+		"ordered-imports": false,
+		"object-literal-sort-keys": false,
+		"no-any": false,
+		"no-null-keyword": false,
+		"no-irregular-whitespace": true,
+		"no-trailing-whitespace": true,
+		"no-any": false,
+		"no-null-keyword": false,
+		"no-angle-bracket-type-assertion": true,
+		"no-empty": false,
+		"curly": false,
+		"member-access": false,
+		"interface-name": [
+			true,
+			"never-prefix"
+		],
+		// General
+		"no-console": [
+			true,
+			"log",
+			"debug",
+			"info",
+			"time",
+			"timeEnd",
+			"trace"
+		],
+		"array-type": [
+			true,
+			"array"
+		],
+		"member-ordering": [
+			true,
+			{
+				"order": [
+					"public-static-field",
+					"protected-static-field",
+					"private-static-field",
+					"public-static-method",
+					"protected-static-method",
+					"private-static-method",
+					"public-instance-field",
+					"protected-instance-field",
+					"private-instance-field",
+					"public-constructor",
+					"protected-constructor",
+					"private-constructor",
+					"public-instance-method",
+					"protected-instance-method",
+					"private-instance-method"
+				]
+			}
+		],
+		"cyclomatic-complexity": [
+			false,
+			20
+		],
+		"trailing-comma": [
+			false,
+			{
+				"multiline": "always",
+				"singleline": "never"
+			}
+		],
+		"max-classes-per-file": [
+			true,
+			5
+		],
+		// General
+		"no-console": [
+			true,
+			"log",
+			"info",
+			"time",
+			"timeEnd",
+			"trace"
+		],
+		"array-type": [
+			true,
+			"array"
+		],
+		"class-name": true,
+		"prefer-const": true,
+		"semicolon": [
+			true,
+			"always"
+		],
+		"max-line-length": [
+			true,
+			200
+		],
+		"no-string-literal": false,
+		"no-use-before-declare": true,
+		"object-literal-sort-keys": false,
+		"ordered-imports": false,
+		"no-conditional-assignment": true,
+		"label-position": true,
+		"no-shadowed-variable": true,
+		"triple-equals": [
+			true,
+			"allow-undefined-check",
+			"allow-null-check"
+		],
+		"use-input-property-decorator": true,
+		"use-output-property-decorator": true,
+		"use-host-property-decorator": true,
+		"no-attribute-parameter-decorator": true,
+		"no-input-rename": true,
+		"no-output-rename": true,
+		"no-forward-ref": false,
+		"use-life-cycle-interface": true,
+		"use-pipe-transform-interface": true,
+		"import-destructuring-spacing": false,
+		"templates-use-public": true,
+		"no-access-missing-member": true,
+		"invoke-injectable": true,
+		"variable-name": [
+			true,
+			"ban-keywords",
+			"check-format",
+			"allow-leading-underscore"
+		],
+		"indent": [
+			true,
+			"tabs"
+		],
+		"quotemark": false,
+		"typedef": [
+			true,
+			"call-signature",
+			"parameter",
+			"member-variable-declaration"
+		]
+	}
+}
