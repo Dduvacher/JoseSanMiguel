@@ -166,7 +166,7 @@ bot.on('message', (message) => {
 
 	// !waifu shows you the true way of the waifu
 	if (message.content.startsWith(commandPrefix + "waifu")) {
-		fs.readFile('kumiko', (err, data) => {
+		fs.readFile('kumiko.txt', (err, data) => {
 			if (err) {
 				console.error("Error when reading file: " + err);
 			}
